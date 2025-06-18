@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.ILP.ProductService.DTOs;
 using Microsoft.ILP.ProductService.Services;
 
@@ -27,7 +27,7 @@ namespace Microsoft.ILP.ProductService.Controllers
         }
 
         [HttpPost]
-        public ActionResult<ProductDto> Create(CreateProductDto dto)
+        public ActionResult<ProductDto> Create([FromBody] CreateProductDto dto)
         {
             var product = _service.Create(dto);
             return CreatedAtAction(nameof(GetById), new { id = product.Id }, product);

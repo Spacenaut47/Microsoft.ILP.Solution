@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.ILP.Web.Services;
+using Microsoft.ILP.Web.Models;
+
 
 namespace Microsoft.ILP.Web.Controllers
 {
@@ -16,6 +18,24 @@ namespace Microsoft.ILP.Web.Controllers
         {
             var products = await _service.GetAllAsync();
             return View(products);
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(CreateProductViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            await _service.CreateAsync(model);
+            return RedirectToAction("Index");
         }
     }
 }
