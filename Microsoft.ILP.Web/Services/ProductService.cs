@@ -32,8 +32,11 @@ namespace Microsoft.ILP.Web.Services
             if (!response.IsSuccessStatusCode) return new List<ProductViewModel>();
 
             var json = await response.Content.ReadAsStringAsync();
-            return JsonSerializer.Deserialize<List<ProductViewModel>>(json) ?? new();
+            var result = JsonSerializer.Deserialize<List<ProductViewModel>>(json);
+
+            return result ?? new List<ProductViewModel>();
         }
+
 
         public async Task CreateAsync(CreateProductViewModel model)
         {
