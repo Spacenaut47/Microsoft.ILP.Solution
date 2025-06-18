@@ -1,0 +1,6 @@
+@Microsoft.ILP.UserService_HostAddress = http://localhost:5108
+
+GET {{Microsoft.ILP.UserService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
