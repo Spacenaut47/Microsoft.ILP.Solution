@@ -37,7 +37,7 @@
 2. Use the `.vscode/launch.json` to run all services
 3. Access:
    - WebApp: `https://localhost:7181`| Or Check the port numbers in the files
-   - ProductService: `https://localhost:7171/swagger` | Or Check the port numbers in the files
+   - ProductService: `http://localhost:5092/swagger` | Or check the port numbers in the files
    - UserService: `https://localhost:7166/swagger` | Or Check the port numbers in the files
 
 ---
