@@ -1,0 +1,46 @@
+{
+  "version": "0.2.0",
+  "compounds": [
+    {
+      "name": "Run All Services",
+      "configurations": ["UserService", "ProductService", "WebApp"]
+    }
+  ],
+  "configurations": [
+    {
+      "name": "UserService",
+      "type": "coreclr",
+      "request": "launch",
+      "project": "Microsoft.ILP.UserService/Microsoft.ILP.UserService.csproj",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "applicationUrl": "https://localhost:7166;http://localhost:5166",
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    {
+      "name": "ProductService",
+      "type": "coreclr",
+      "request": "launch",
+      "project": "Microsoft.ILP.ProductService/Microsoft.ILP.ProductService.csproj",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "applicationUrl": "https://localhost:7171;http://localhost:5171",
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    {
+      "name": "WebApp",
+      "type": "coreclr",
+      "request": "launch",
+      "project": "Microsoft.ILP.Web/Microsoft.ILP.Web.csproj",
+      "launchBrowser": true,
+      "applicationUrl": "https://localhost:7181;http://localhost:5181",
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  ]
+}
