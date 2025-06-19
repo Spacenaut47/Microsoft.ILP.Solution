@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+using AutoMapper;
+using System;
 using Microsoft.ILP.UserService.DTOs;
 using Microsoft.ILP.UserService.Models;
 using Microsoft.ILP.UserService.Repositories;
@@ -51,6 +52,16 @@ namespace Microsoft.ILP.UserService.Services
         public void Delete(int id)
         {
             _repository.DeleteUser(id);
+        }
+
+        public User? Authenticate(string email, string password)
+        {
+            var user = _repository
+                .GetAllUsers()
+                .FirstOrDefault(u => string.Equals(u.Email, email, StringComparison.OrdinalIgnoreCase)
+                                  && u.Password == password);
+
+            return user;
         }
     }
 }

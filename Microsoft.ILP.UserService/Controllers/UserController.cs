@@ -69,21 +69,11 @@ namespace Microsoft.ILP.UserService.Controllers
         [HttpPost("login")]
         public IActionResult Login(LoginDto dto)
         {
-            var users = _service.GetAll();
-            var user = users.FirstOrDefault(u => u.Email == dto.Email && dto.Password == "123456"); // Replace with real validation later
+            var user = _service.Authenticate(dto.Email ?? string.Empty, dto.Password ?? string.Empty);
             if (user == null)
                 return Unauthorized("Invalid email or password");
 
-            var fullUser = new User
-            {
-                Id = user.Id,
-                Email = user.Email,
-                Name = user.Name,
-                Role = user.Role,
-                Password = dto.Password
-            };
-
-            var token = _tokenService.GenerateToken(fullUser);
+            var token = _tokenService.GenerateToken(user);
             return Ok(new { token });
         }
 
