@@ -1,20 +1,19 @@
 {
   "version": "0.2.0",
-  "compounds": [
-    {
-      "name": "Run All Services",
-      "configurations": ["UserService", "ProductService", "WebApp"]
-    }
-  ],
   "configurations": [
     {
       "name": "UserService",
       "type": "coreclr",
       "request": "launch",
-      "project": "Microsoft.ILP.UserService/Microsoft.ILP.UserService.csproj",
-      "launchBrowser": true,
-      "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7166;http://localhost:5166",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/Microsoft.ILP.UserService/bin/Debug/net8.0/Microsoft.ILP.UserService.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/Microsoft.ILP.UserService",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
       "env": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -23,10 +22,15 @@
       "name": "ProductService",
       "type": "coreclr",
       "request": "launch",
-      "project": "Microsoft.ILP.ProductService/Microsoft.ILP.ProductService.csproj",
-      "launchBrowser": true,
-      "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7171;http://localhost:5171",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/Microsoft.ILP.ProductService/bin/Debug/net8.0/Microsoft.ILP.ProductService.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/Microsoft.ILP.ProductService",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
       "env": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -35,12 +39,24 @@
       "name": "WebApp",
       "type": "coreclr",
       "request": "launch",
-      "project": "Microsoft.ILP.Web/Microsoft.ILP.Web.csproj",
-      "launchBrowser": true,
-      "applicationUrl": "https://localhost:7181;http://localhost:5181",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/Microsoft.ILP.Web/bin/Debug/net8.0/Microsoft.ILP.Web.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/Microsoft.ILP.Web",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
       "env": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Run All Services",
+      "configurations": ["UserService", "ProductService", "WebApp"]
     }
   ]
 }
