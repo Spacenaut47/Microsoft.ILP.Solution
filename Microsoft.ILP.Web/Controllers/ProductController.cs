@@ -37,5 +37,13 @@ namespace Microsoft.ILP.Web.Controllers
             await _service.CreateAsync(model);
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _service.DeleteAsync(id);
+            return RedirectToAction("Index");
+        }
+
     }
 }

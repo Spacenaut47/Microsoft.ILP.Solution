@@ -4,6 +4,7 @@ using Microsoft.ILP.Web.Settings;
 using System.Text;
 using System.Text.Json;
 using Microsoft.ILP.Web.DTOs;
+using System.Net.Http;
 
 
 namespace Microsoft.ILP.Web.Services
@@ -12,6 +13,7 @@ namespace Microsoft.ILP.Web.Services
     {
         Task<List<ProductViewModel>> GetAllAsync();
         Task CreateAsync(CreateProductViewModel model);
+        Task DeleteAsync(int id);
     }
 
     public class ProductService : IProductService
@@ -54,6 +56,13 @@ namespace Microsoft.ILP.Web.Services
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             await client.PostAsync(_productApiUrl, content);
         }
+
+        public async Task DeleteAsync(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            await client.DeleteAsync($"{_productApiUrl}/{id}");
+        }
+
 
 
     }
