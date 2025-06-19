@@ -7,7 +7,7 @@
       "type": "process",
       "args": [
         "build",
-        "${workspaceFolder}/Microsoft.ILP.sln"
+        "${workspaceFolder}/Microsoft.ILP.Solution.sln"
       ],
       "problemMatcher": "$msCompile"
     }
