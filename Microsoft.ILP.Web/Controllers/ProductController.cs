@@ -45,5 +45,39 @@ namespace Microsoft.ILP.Web.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var products = await _service.GetAllAsync();
+            var product = products.FirstOrDefault(p => p.Id == id);
+
+            if (product == null) return NotFound();
+
+            var model = new CreateProductViewModel
+            {
+                Name = product.Name,
+                Description = product.Description,
+                Price = product.Price,
+                Category = product.Category,
+                Stock = product.Stock
+            };
+
+            ViewBag.ProductId = id;
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, CreateProductViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.ProductId = id;
+                return View(model);
+            }
+
+            await _service.UpdateAsync(id, model);
+            return RedirectToAction("Index");
+        }
+
     }
 }

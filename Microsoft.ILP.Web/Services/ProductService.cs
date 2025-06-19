@@ -14,6 +14,8 @@ namespace Microsoft.ILP.Web.Services
         Task<List<ProductViewModel>> GetAllAsync();
         Task CreateAsync(CreateProductViewModel model);
         Task DeleteAsync(int id);
+        Task UpdateAsync(int id, CreateProductViewModel model);
+
     }
 
     public class ProductService : IProductService
@@ -62,8 +64,13 @@ namespace Microsoft.ILP.Web.Services
             var client = _httpClientFactory.CreateClient();
             await client.DeleteAsync($"{_productApiUrl}/{id}");
         }
-
-
+        public async Task UpdateAsync(int id, CreateProductViewModel model)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var json = JsonSerializer.Serialize(model);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            await client.PutAsync($"{_productApiUrl}/{id}", content);
+        }
 
     }
 }
