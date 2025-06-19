@@ -15,9 +15,6 @@
 
   <ItemGroup>
     <Folder Include="Data\" />
-    <None Update="Data/products.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>
