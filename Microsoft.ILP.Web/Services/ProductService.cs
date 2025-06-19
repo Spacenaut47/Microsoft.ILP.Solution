@@ -36,7 +36,10 @@ namespace Microsoft.ILP.Web.Services
             if (!response.IsSuccessStatusCode) return new List<ProductViewModel>();
 
             var json = await response.Content.ReadAsStringAsync();
-            var result = JsonSerializer.Deserialize<List<ProductViewModel>>(json);
+            var result = JsonSerializer.Deserialize<List<ProductViewModel>>(json, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
 
             return result ?? new List<ProductViewModel>();
         }
@@ -54,7 +57,10 @@ namespace Microsoft.ILP.Web.Services
             };
 
             var client = _httpClientFactory.CreateClient();
-            var json = JsonSerializer.Serialize(dto);
+            var json = JsonSerializer.Serialize(dto, new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            });
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             await client.PostAsync(_productApiUrl, content);
         }
@@ -67,7 +73,10 @@ namespace Microsoft.ILP.Web.Services
         public async Task UpdateAsync(int id, CreateProductViewModel model)
         {
             var client = _httpClientFactory.CreateClient();
-            var json = JsonSerializer.Serialize(model);
+            var json = JsonSerializer.Serialize(model, new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            });
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             await client.PutAsync($"{_productApiUrl}/{id}", content);
         }
