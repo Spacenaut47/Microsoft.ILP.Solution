@@ -17,9 +17,6 @@
 
   <ItemGroup>
     <Folder Include="Data\" />
-    <Content Include="Data/users.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 
 </Project>
